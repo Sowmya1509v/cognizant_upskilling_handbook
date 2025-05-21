@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Invite with Media Events</title>
+</head>
+<body>
+    <section id="promo">
+    <h2>Upcoming Event Preview</h2>
+    <div id="videoContainer">
+        <video id="eventVideo" width="640" height="360" controls
+               oncanplay="videoReady()"
+               onbeforeunload="return warnUnfinishedForm()">
+            <source src="event-promo.mp4" type="video/mp4">
+            <source src="event-promo.webm" type="video/webm">
+            Your browser does not support the video tag.
+        </video>
+        <p id="videoStatus">Loading video...</p>
+    </div>
+
+    <script>
+        function videoReady() {
+            document.getElementById('videoStatus').textContent = "Video ready to play!";
+        }
+
+        function warnUnfinishedForm() {
+            const form = document.getElementById('registrationForm');
+            if (form && Array.from(form.elements).some(el => el.value && !el.disabled)) {
+                return "You have unsaved form data. Are you sure you want to leave?";
+            }
+        }
+    </script>
+</section>
+</body>
+</html>

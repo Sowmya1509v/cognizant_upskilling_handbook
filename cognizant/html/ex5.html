@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Registration Form</title>
+</head>
+<body>
+    <section id="register">
+    <h2 id="h22">Event Registration</h2>
+    <form id="registrationForm">
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" name="name" required autofocus 
+               placeholder="Enter your full name"><br><br>
+        
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required 
+               placeholder="Enter your email"><br><br>
+        
+        <label for="eventDate">Event Date:</label>
+        <input type="date" id="eventDate" name="eventDate" required><br><br>
+        
+        <label for="eventType">Event Type:</label>
+        <select id="eventType" name="eventType" required>
+            <option value="">Select an event</option>
+            <option value="festival">Summer Festival</option>
+            <option value="workshop">Community Workshop</option>
+            <option value="sports">Sports Tournament</option>
+            <option value="concert">Music Concert</option>
+        </select><br><br>
+        
+        <label for="message">Special Requirements:</label><br>
+        <textarea id="message" name="message" rows="4" cols="50"
+                  placeholder="Any special needs or comments"></textarea><br><br>
+        
+        <button type="submit">Register</button>
+        
+        <output id="confirmation" style="display:none; margin-top:15px; padding:10px; background:#e8f5e9;"></output>
+    </form>
+    
+    <style>
+        form {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f9f9f900;
+            border-radius: 8px;
+        }
+        label {
+            display: inline-block;
+            width: 120px;
+            margin-bottom: 5px;
+        }
+        input, select, textarea {
+            width: 250px;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            background: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        #h22{
+            text-align: center;
+        }
+    </style>
+    
+    <script>
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const output = document.getElementById('confirmation');
+            output.style.display = 'block';
+            output.innerHTML = `Thank you for registering! We've sent a confirmation to ${document.getElementById('email').value}`;
+        });
+    </script>
+</section>
+</body>
+</html>

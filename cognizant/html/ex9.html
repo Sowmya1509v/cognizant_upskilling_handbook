@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geolocation for Event Mapping</title>
+</head>
+<body>
+    <section id="nearbyEvents">
+    <h2>Find Nearby Events</h2>
+    <button onclick="findNearbyEvents()">Find Nearby Events</button>
+    <div id="locationInfo" style="margin-top: 15px;"></div>
+    <div id="nearbyResults" style="margin-top: 15px;"></div>
+
+    <script>
+        function findNearbyEvents() {
+            const locationInfo = document.getElementById('locationInfo');
+            const nearbyResults = document.getElementById('nearbyResults');
+            
+            locationInfo.textContent = "Locating you...";
+            nearbyResults.innerHTML = "";
+
+            const options = {
+                enableHighAccuracy: true,
+                timeout: 10000,
+                maximumAge: 0
+            };
+
+            if (!navigator.geolocation) {
+                locationInfo.textContent = "Geolocation is not supported by your browser";
+                return;
+            }
+
+            navigator.geolocation.getCurrentPosition(
+                function(position) {
+                    const lat = position.coords.latitude;
+                    const lng = position.coords.longitude;
+                    
+                    locationInfo.innerHTML = `
+                        <p>Your location: ${lat.toFixed(4)}, ${lng.toFixed(4)}</p>
+                        <p>Accuracy: ${position.coords.accuracy} meters</p>
+                    `;
+                    
+                    // Simulate finding nearby events (in real app, you'd call an API)
+                    simulateNearbyEvents(lat, lng);
+                },
+                function(error) {
+                    let message = "Error getting location: ";
+                    switch(error.code) {
+                        case error.PERMISSION_DENIED:
+                            message += "You denied the request for geolocation.";
+                            break;
+                        case error.POSITION_UNAVAILABLE:
+                            message += "Location information is unavailable.";
+                            break;
+                        case error.TIMEOUT:
+                            message += "The request to get location timed out.";
+                            break;
+                        case error.UNKNOWN_ERROR:
+                            message += "An unknown error occurred.";
+                            break;
+                    }
+                    locationInfo.textContent = message;
+                },
+                options
+            );
+        }
+
+        function simulateNearbyEvents(lat, lng) {
+            const nearbyResults = document.getElementById('nearbyResults');
+            const events = [
+                { name: "Community Picnic", distance: "0.5 miles", location: "City Park" },
+                { name: "Yoga in the Park", distance: "1.2 miles", location: "Riverside Park" },
+                { name: "Farmers Market", distance: "0.8 miles", location: "Main Square" }
+            ];
+            
+            let html = "<h3>Events Near You:</h3><ul>";
+            events.forEach(event => {
+                html += `<li><strong>${event.name}</strong> - ${event.distance} (${event.location})</li>`;
+            });
+            html += "</ul>";
+            
+            nearbyResults.innerHTML = html;
+        }
+    </script>
+</section>
+</body>
+</html>

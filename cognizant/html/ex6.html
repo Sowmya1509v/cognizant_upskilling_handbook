@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Feedback with Events Handling</title>
+</head>
+<body>
+    <section id="feedback">
+    <h2>Event Feedback</h2>
+    
+    <form id="feedbackForm">
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" 
+               onblur="validatePhone(this)" 
+               placeholder="123-456-7890"><br>
+        <span id="phoneError" style="color:red;"></span><br><br>
+        
+        <label for="feedbackEvent">Select Event:</label>
+        <select id="feedbackEvent" name="feedbackEvent" 
+                onchange="showEventFee(this)">
+            <option value="">Select an event</option>
+            <option value="festival" data-fee="10">Summer Festival ($10)</option>
+            <option value="workshop" data-fee="5">Community Workshop ($5)</option>
+            <option value="concert" data-fee="15">Music Concert ($15)</option>
+        </select>
+        <span id="feeDisplay"></span><br><br>
+        
+        <label for="comments">Your Feedback:</label><br>
+        <textarea id="comments" name="comments" rows="5" cols="50"
+                  onkeyup="countChars(this)"
+                  placeholder="Share your experience..."></textarea><br>
+        <span id="charCount">0/500 characters</span><br><br>
+        
+        <button type="submit" onclick="showConfirmation(event)">Submit Feedback</button>
+        
+        <div id="feedbackImage" style="margin-top:20px;">
+            <img src="feed.jpeg" alt="Feedback" 
+                 ondblclick="enlargeImage(this)"
+                 style="width:200px; cursor:pointer;">
+        </div>
+    </form>
+    
+    <script>
+        function validatePhone(input) {
+            const phoneRegex = /^\d{3}-\d{3}-\d{4}$/;
+            const errorElement = document.getElementById('phoneError');
+            
+            if (!phoneRegex.test(input.value)) {
+                errorElement.textContent = 'Please enter phone in format: 123-456-7890';
+                input.style.borderColor = 'red';
+            } else {
+                errorElement.textContent = '';
+                input.style.borderColor = '#ddd';
+            }
+        }
+        
+        function showEventFee(select) {
+            const feeDisplay = document.getElementById('feeDisplay');
+            if (select.value) {
+                const fee = select.options[select.selectedIndex].getAttribute('data-fee');
+                feeDisplay.textContent = `Entry fee: $${fee}`;
+            } else {
+                feeDisplay.textContent = '';
+            }
+        }
+        
+        function countChars(textarea) {
+            const charCount = document.getElementById('charCount');
+            charCount.textContent = `${textarea.value.length}/500 characters`;
+        }
+        
+        function showConfirmation(e) {
+            e.preventDefault();
+            alert('Thank you for your feedback!');
+            document.getElementById('feedbackForm').reset();
+            document.getElementById('feeDisplay').textContent = '';
+            document.getElementById('charCount').textContent = '0/500 characters';
+        }
+        
+        function enlargeImage(img) {
+            if (img.style.width === '200px') {
+                img.style.width = '400px';
+            } else {
+                img.style.width = '200px';
+            }
+        }
+    </script>
+</section>
+</body>
+</html>

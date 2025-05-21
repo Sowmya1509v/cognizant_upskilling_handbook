@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saving User Preferences</title>
+</head>
+<body>
+    <section id="preferences">
+    <h2>Your Preferences</h2>
+    <label for="preferredEvent">Preferred Event Type:</label>
+    <select id="preferredEvent" onchange="savePreference()">
+        <option value="">Select preference</option>
+        <option value="festival">Festivals</option>
+        <option value="workshop">Workshops</option>
+        <option value="sports">Sports</option>
+        <option value="concert">Concerts</option>
+    </select>
+    
+    <button onclick="clearPreferences()">Clear All Preferences</button>
+    
+    <script>
+        // Load saved preference on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedPref = localStorage.getItem('preferredEvent');
+            if (savedPref) {
+                const select = document.getElementById('preferredEvent');
+                select.value = savedPref;
+                console.log('Loaded preference from localStorage:', savedPref);
+            }
+        });
+
+        function savePreference() {
+            const pref = document.getElementById('preferredEvent').value;
+            localStorage.setItem('preferredEvent', pref);
+            sessionStorage.setItem('lastEventPref', pref);
+            console.log('Saved preference:', pref);
+        }
+
+        function clearPreferences() {
+            localStorage.removeItem('preferredEvent');
+            sessionStorage.clear();
+            document.getElementById('preferredEvent').value = '';
+            console.log('Cleared all storage');
+            alert('All preferences have been cleared.');
+        }
+    </script>
+</section>
+</body>
+</html>
