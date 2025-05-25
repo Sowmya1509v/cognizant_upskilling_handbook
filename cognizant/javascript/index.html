@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Event Portal</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Community Event Portal</h1>
+        <p>Find and register for local events in your area</p>
+    </header>
+
+    <main>
+        <section class="controls">
+            <div class="search-filter">
+                <input type="text" id="search" placeholder="Search events...">
+                <select id="category-filter">
+                    <option value="all">All Categories</option>
+                    <option value="Music">Music</option>
+                    <option value="Food">Food</option>
+                    <option value="Art">Art</option>
+                    <option value="Technology">Technology</option>
+                    <option value="Health">Health</option>
+                </select>
+            </div>
+        </section>
+
+        <section class="events">
+            <div id="loading" style="display: none;">Loading events...</div>
+            <div id="events-container" class="event-grid"></div>
+        </section>
+
+        <section class="registration-form">
+            <h2>Register for an Event</h2>
+            <form id="registration-form">
+                <div class="form-group">
+                    <label for="name">Full Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="event">Select Event:</label>
+                    <select id="event" name="event" required>
+                        <!-- Will be populated by JavaScript -->
+                    </select>
+                </div>
+                <button type="submit">Register</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Community Event Portal</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

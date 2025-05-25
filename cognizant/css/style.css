@@ -1,0 +1,234 @@
+/* Requirement 1: Embedded style moved to external CSS */
+/* Requirement 2: CSS Syntax and Comments */
+
+/* Base Styles */
+/* Requirement 3: Universal selector reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    /* Requirement 1: Body background */
+    background-color: #f5f5f5;
+    background-image: url('https://example.com/community-bg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    /* Requirement 5: Typography */
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+
+/* Requirement 3: Element selector */
+h2 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Requirement 3: ID selector */
+#mainHeader {
+    background: linear-gradient(135deg, #1e5799 0%, #207cca 100%);
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+/* Requirement 3: Class selector */
+.eventCard {
+    background: white;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    /* Requirement 8: Box Model */
+    padding: 20px;
+    margin: 20px 0;
+    border: 1px solid #ddd;
+}
+
+/* Requirement 3: Grouping selector */
+h3, p {
+    margin-bottom: 10px;
+}
+
+/* Requirement 4: Color & Background Styling */
+.section-header {
+    background: linear-gradient(to right, #ff7e5f, #feb47b);
+    color: white;
+    padding: 10px 15px;
+    margin: 20px 0;
+    border-radius: 4px;
+}
+
+/* Requirement 5: Typography */
+h1, h2, h3 {
+    font-family: 'Open Sans', sans-serif;
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+h2 {
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+h3 {
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+p {
+    font-size: 1rem;
+    line-height: 1.6;
+    text-align: justify;
+}
+
+/* Requirement 6: Link and List Styling */
+a {
+    text-decoration: none;
+    color: #007BFF;
+}
+
+a:link {
+    color: #007BFF;
+}
+
+a:visited {
+    color: #6f42c1;
+}
+
+a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+a:active {
+    color: #d63384;
+}
+
+.nav-menu {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 10px 0;
+}
+
+.nav-menu li {
+    padding: 5px 10px;
+}
+
+/* Requirement 7: Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #f8f9fa;
+    font-weight: bold;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #e9ecef;
+}
+
+/* Requirement 8: Box Model & Layout Control */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+.form-input {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.form-input:focus {
+    outline: 2px solid #007BFF;
+}
+
+.hidden-element {
+    visibility: hidden;
+}
+
+.removed-element {
+    display: none;
+}
+
+/* Requirement 9: Multiple Columns in Text */
+.multi-column {
+    column-count: 2;
+    column-gap: 30px;
+    column-rule: 1px solid gray;
+    margin: 20px 0;
+}
+
+/* Requirement 10: Responsive Web Design with Media Queries */
+@media screen and (max-width: 768px) {
+    .nav-menu {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .multi-column {
+        column-count: 1;
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
+    
+    h2 {
+        font-size: 1.5rem;
+    }
+    
+    .container {
+        width: 95%;
+        padding: 10px;
+    }
+    
+    .eventCard {
+        padding: 15px;
+        margin: 15px 0;
+    }
+}
+
+/* Button Styles */
+.cta-button {
+    /* Requirement 2: Example from instructions */
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.cta-button:hover {
+    background-color: #0056b3;
+}
